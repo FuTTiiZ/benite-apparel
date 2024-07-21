@@ -1,0 +1,86 @@
+@keyframes badge-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotateY(15deg) scale(.9);
+  }
+}
+
+.badge {
+  position: relative;
+
+  width: 250px;
+  aspect-ratio: 3 / 1;
+
+  background: radial-gradient(#00040A, #000E1F 110%);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  padding: 5px;
+
+  box-shadow: 0 0 15px #00000069;
+
+  animation: badge-appear var(--menu-appear-time) ease-in-out;
+}
+
+.badge::before {
+  content: '';
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  background: radial-gradient(#ffffff28 1px, #00000087);
+  background-size: 3px 3px;
+  
+  pointer-events: none;
+  opacity: .1;
+
+  z-index: 1;
+}
+
+.inner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  /* background: #000E1F; */
+  box-shadow:
+    0 0 15px #00040a inset,
+    0 0 15px #00040a
+  ;
+}
+
+.inner input {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  outline: none;
+  border: none;
+  padding: 0;
+
+  background: none;
+  color: #d4aa00;
+
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px #9d7e01;
+
+  font-family: Arial;
+  font-size: 5rem;
+  font-weight: 500;
+}
+
+.inner input::selection {
+  background: #fafb0069;
+  text-shadow: 0 0 5px #000;
+
+  color: #000;
+
+}

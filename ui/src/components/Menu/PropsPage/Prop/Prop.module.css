@@ -1,0 +1,21 @@
+.prop {
+  position: relative;
+  left: 1rem;
+
+  perspective: 240px;
+}
+
+@keyframes title-appear {
+  0% {
+    transform: rotateX(15deg) translateY(-25px);
+    opacity: 0;
+  }
+}
+
+.prop h2 {
+  margin-bottom: 1rem;
+
+  text-shadow: 0 0 10px #000;
+
+  animation: title-appear var(--menu-appear-time) ease-in-out;
+}

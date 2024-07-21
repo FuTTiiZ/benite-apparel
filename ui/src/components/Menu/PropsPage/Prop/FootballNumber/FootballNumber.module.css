@@ -1,0 +1,27 @@
+@keyframes number-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotateY(15deg) scale(.9);
+  }
+}
+
+.number {
+  position: relative;
+  width: 100px;
+
+  background: none;
+
+  outline: none;
+  border: none;
+  padding: 0;
+
+  font-size: 4rem;
+  font-weight: 900;
+  
+  text-transform: uppercase;
+  text-align: center;
+
+  color: var(--color);
+
+  animation: number-appear var(--menu-appear-time) ease-in-out;
+}

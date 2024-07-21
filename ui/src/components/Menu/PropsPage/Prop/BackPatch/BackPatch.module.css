@@ -1,0 +1,97 @@
+@keyframes patch-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotateY(15deg) scale(.9);
+  }
+}
+
+
+.patch {
+  animation: patch-appear var(--menu-appear-time) ease-in-out;
+}
+
+.images {
+  position: relative;
+
+  --scale: .484;
+  --peel-speed: .25s;
+
+  width: calc(597px * var(--scale));
+  height: calc(176px * var(--scale));
+
+  box-shadow:
+    0 -15px 15px -12px var(--theme),
+    0 15px 15px -12px var(--theme)
+  ;
+
+  cursor: pointer;
+
+  transition: box-shadow var(--peel-speed) ease-in-out;
+}
+
+.images:hover {
+  box-shadow:
+    0 -15px 15px -18px var(--theme),
+    0 15px 15px -18px var(--accent)
+  ;
+}
+
+.images::before {
+  content: '';
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  background: radial-gradient(#ffffff28 1px, #00000087);
+  background-size: 3px 3px;
+  
+  pointer-events: none;
+  opacity: .1;
+
+  z-index: 1;
+}
+
+.images img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.images img:first-child {
+  transition: border-radius var(--peel-speed) ease-in-out;
+}
+
+.images:not(.just-changed):hover img:first-child {
+  border-radius: 2px 5px 50% 5px;
+}
+
+.images img:last-child {
+  clip-path: polygon(
+    100% 100%,
+    100% 100%,
+    100% 100%
+  );
+  transition: clip-path var(--peel-speed) ease-in-out;
+}
+
+.images.just-changed img:last-child {
+  clip-path: polygon(
+    100% 100%,
+    100% 100%,
+    100% 100%
+  );
+}
+
+.images:not(.just-changed):hover img:last-child {
+  clip-path: polygon(
+    100% -30%,
+    -30% 100%,
+    100% 100%
+  );
+}

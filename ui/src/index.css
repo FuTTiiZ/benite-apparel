@@ -1,0 +1,64 @@
+:root {
+  /* COLOUR PALLETTE */
+  --color-gold: #f6c801;
+  --color-gold-accent: #f6c80169;
+
+  font-family: Akrobat;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background-size: 100%;
+}
+
+#root {
+  margin: 20px;
+  margin-top: 40px;
+}
+
+* {
+  font-family: Akrobat;
+  color: #fff;
+
+  user-select: none;
+
+  margin: 0;
+
+  border-radius: 2px;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #ffffff69;
+}

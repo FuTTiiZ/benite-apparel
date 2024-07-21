@@ -1,0 +1,47 @@
+{
+  "command_description": "Åben Apparel menu",
+
+  "camera_angle_front": "Front",
+
+  "model_freemode_male": "Freemode Mand",
+  "model_freemode_female": "Freemode Kvinde",
+
+  "components_jbib": "Trøjer",
+  "components_task": "Skudsikre Veste",
+  "components_accs": "Tilbehør",
+
+  "drawable_shirt": "Kortærmet Skjorte",
+  "drawable_knit": "Striktrøje",
+  "drawable_bif": "Brøndby Trøje",
+  "drawable_fck": "FCK Trøje",
+  "drawable_ob": "OB Trøje",
+  "drawable_aab": "AAB Trøje",
+  "drawable_fcm": "FC Midtjylland Trøje",
+  "drawable_ach": "AC Horsens Trøje",
+  "drawable_vff": "Viborg FF Trøje",
+  "drawable_customshirt": "Custom Trøje",
+  "drawable_lvest": "Letvest",
+  "drawable_lvestnote": "Letvest m. Notesblok",
+  "drawable_customvest": "Custom Vest",
+
+  "tab_title_clothing": "Beklædning",
+  "tab_title_properties": "Detaljer",
+
+  "server_has_no_compatible_clothing": "Det ser ikke ud til, at serveren har noget kompatibelt tøj",
+  "drag_to_rotate_character": "Træk for at dreje din karakter",
+  "image_url": "Billede URL",
+  "horizontal_offset": "Vandret Offset",
+  "vertical_offset": "Lodret Offset",
+
+  "property_jersey_player_name": "Navn",
+  "property_jersey_player_number": "Nummer",
+  "property_badge_number": "Markeringsnummer",
+  "property_police_rank": "Charge",
+  "property_police_back": "Ryglogo",
+  "property_police_front": "Frontlogo",
+  "property_book_color": "Bogfarve",
+  "property_pen_color": "Kuglepensfarve",
+  "property_primary_color": "Primær Farve",
+  "property_print_front": "Front Print",
+  "property_print_back": "Ryg Print"
+}

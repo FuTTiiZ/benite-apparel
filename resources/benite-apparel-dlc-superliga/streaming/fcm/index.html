@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>fcm</title>
+
+    <script src="../__shared/data.js"></script>
+    
+    <style>
+      body {
+        margin: 0;
+        background: url(texture.png) no-repeat;
+      }
+
+      #playerName {
+        position: absolute;
+        top: 2320px;
+        left: 215px;
+
+        width: 2000px;
+        height: 520px;
+
+        text-align: center;
+        text-transform: uppercase;
+
+        font-family: Arial;
+        font-size: 320px;
+        font-weight: bold;
+        color: #ff0000;
+
+        overflow: hidden;
+
+        transition:
+          font-size .5s ease-in-out,
+          padding-top .5s ease-in-out
+        ;
+      }
+
+      #playerNumber {
+        position: absolute;
+        top: 2040px;
+        left: 210px;
+
+        width: 2000px;
+        height: 1520px;
+
+        text-align: center;
+        text-transform: uppercase;
+
+        font-family:'Segoe UI';
+        font-size: 1020px;
+        font-weight: bold;
+        color: #de0000;
+
+        text-shadow:
+          6px 6px 0 #000,
+          -6px -6px 0 #000,
+          25px 25px 0 #fff
+        ;
+
+        scale: 1.2 1.3;
+
+        overflow: hidden;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <h2 id="playerName"></h2>
+    <h1 id="playerNumber"></h1>
+
+    <script defer>
+      // UPDATE SCRIPT
+
+      const setPropertyValue = (property, value) => {
+        switch (property) {
+          case 'footballName': { // Player name
+
+            value = value.slice(0, 12)
+            playerName.innerText = value
+            playerName.style.cssText =
+              value.length < 8 ? 'font-size: 320px;' :
+                value.length < 10 ? 'font-size: 250px; padding-top: 70px' :
+                'font-size: 200px; padding-top: 120px'
+
+          break}
+
+          case 'footballNumber': { // Player name
+
+            playerNumber.innerText = value
+
+          break}
+        }
+      }
+
+      // Listen for window messages
+      window.onmessage = ({ data: { property, value } }) => setPropertyValue(property, value)
+    </script>
+
+    <script defer>
+      // LOAD SCRIPT
+
+      const duiUrl = new URL(window.location.href)
+      document.title = duiUrl.searchParams.get('title') || 'UNKNOWN'
+
+      // Texture width/height
+      document.body.style.width = duiUrl.searchParams.get('width') + 'px'
+      document.body.style.height = duiUrl.searchParams.get('height') + 'px'
+
+      // Properties
+      setPropertyValue('footballName', duiUrl.searchParams.get('footballName') || 'Benite') // Player name
+      setPropertyValue('footballNumber', parseInt(duiUrl.searchParams.get('footballNumber') || 10)) // Player number
+
+      // Ready for scripting
+      fetch(`https://${RESOURCE_NAME}/streamingReady`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          textureId: duiUrl.searchParams.get('textureId'),
+          drawableId: duiUrl.searchParams.get('drawableId')
+        })
+      })
+    </script>
+  </body>
+</html>

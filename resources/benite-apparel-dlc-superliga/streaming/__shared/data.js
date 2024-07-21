@@ -1,0 +1,1 @@
+const RESOURCE_NAME = document.location.host.slice(8, 22)

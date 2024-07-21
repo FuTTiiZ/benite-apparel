@@ -1,0 +1,47 @@
+{
+  "command_description": "Open Apparel menu",
+
+  "camera_angle_front": "Front",
+
+  "model_freemode_male": "Freemode Male",
+  "model_freemode_female": "Freemode Female",
+
+  "components_jbib": "Jackets",
+  "components_task": "Bulletproof Vests",
+  "components_accs": "Accessories",
+
+  "drawable_shirt": "Short-sleeved Politi Shirt",
+  "drawable_knit": "Politi Knit Sweater",
+  "drawable_bif": "Brøndby Jersey",
+  "drawable_fck": "FCK Jersey",
+  "drawable_ob": "OB Jersey",
+  "drawable_aab": "AAB Jersey",
+  "drawable_fcm": "FC Midtjylland Jersey",
+  "drawable_ach": "AC Horsens Jersey",
+  "drawable_vff": "Viborg FF Jersey",
+  "drawable_customshirt": "Custom Shirt",
+  "drawable_lvest": "Light Politi Vest",
+  "drawable_lvestnote": "Light Politi Vest with Notepad",
+  "drawable_customvest": "Custom Plate Carrier",
+
+  "tab_title_clothing": "Clothing",
+  "tab_title_properties": "Details",
+
+  "server_has_no_compatible_clothing": "It doesn't look like this server has any compatible clothing",
+  "drag_to_rotate_character": "Drag to rotate your character",
+  "image_url": "Image URL",
+  "horizontal_offset": "Horizontal Offset",
+  "vertical_offset": "Vertical Offset",
+
+  "property_jersey_player_name": "Name",
+  "property_jersey_player_number": "Number",
+  "property_badge_number": "Badge Number",
+  "property_police_rank": "Rank",
+  "property_police_back": "Back Logo",
+  "property_police_front": "Front Logo",
+  "property_book_color": "Book Color",
+  "property_pen_color": "Pen Color",
+  "property_primary_color": "Primary Color",
+  "property_print_front": "Front Print",
+  "property_print_back": "Back Print"
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>customvest</title>
+
+    <script src="../__shared/data.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        width: 1024px;
+        height: 1024px;
+      }
+
+      #vest,
+      #texture {
+        position: absolute;
+        width: 1024px;
+        height: 1024px;
+      }
+
+      #vest {
+        z-index: 0;
+      }
+
+      #texture {
+        z-index: 2;
+      }
+
+      .print {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 130px;
+        margin-left: -65px;
+        margin-top: -65px;
+
+        z-index: 1;
+      }
+
+      #imageFront {
+        translate: 460px 1020px;
+      }
+
+      #imageBack {
+        translate: 420px 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vest"></div>
+    <img id="texture" src="vest.png" />
+    <img
+      id="imageFront"
+      class="print"
+      src="https://benite.xyz/assets/logo.svg"
+      alt="PRINT"
+    />
+    <img
+      id="imageBack"
+      class="print"
+      src="https://benite.xyz/assets/logo.svg"
+      alt="PRINT"
+    />
+
+    <script defer>
+      // UPDATE SCRIPT
+
+      const setPropertyValue = (property, value) => {
+        switch (property) {
+          case 'primaryColor': {
+            // Primary colour
+            vest.style.backgroundColor = value
+            break
+          }
+          case 'printFront': {
+            // Front print
+            if (typeof value !== 'object') break
+
+            if (!value.url) {
+              imageFront.style.opacity = 0
+              imageFront.src = ''
+            } else {
+              imageFront.src = value.url
+              imageFront.style.opacity = 1
+            }
+
+            imageFront.style.marginLeft = value.offsetX * 100 - 250 + 'px'
+            imageFront.style.marginTop = value.offsetY * 100 - 250 + 'px'
+
+            break
+          }
+          case 'printBack': {
+            // Back print
+            if (typeof value !== 'object') break
+
+            if (!value.url) {
+              imageBack.style.opacity = 0
+              imageBack.src = ''
+            } else {
+              imageBack.src = value.url
+              imageBack.style.opacity = 1
+            }
+
+            imageBack.style.marginLeft = value.offsetX * 100 - 250 + 'px'
+            imageBack.style.marginTop = value.offsetY * 100 - 250 + 'px'
+
+            break
+          }
+        }
+      }
+
+      // Listen for window messages
+      window.onmessage = ({ data: { property, value } }) =>
+        setPropertyValue(property, value)
+    </script>
+
+    <script defer>
+      // LOAD SCRIPT
+
+      const duiUrl = new URL(window.location.href)
+      document.title = duiUrl.searchParams.get('title') || 'UNKNOWN'
+
+      // Texture width/height
+      document.body.style.width = duiUrl.searchParams.get('width') + 'px'
+      document.body.style.height = duiUrl.searchParams.get('height') + 'px'
+
+      // Properties
+      setPropertyValue(
+        'primaryColor',
+        duiUrl.searchParams.get('primaryColor') || '#121212'
+      ) // Primary colour
+      setPropertyValue(
+        'printFront',
+        JSON.parse(duiUrl.searchParams.get('printFront')) || {
+          url: null,
+          offsetX: 0,
+          offsetY: 0,
+        }
+      ) // Front print
+      setPropertyValue(
+        'printBack',
+        JSON.parse(duiUrl.searchParams.get('printBack')) || {
+          url: null,
+          offsetX: 0,
+          offsetY: 0,
+        }
+      ) // Back print
+
+      // Ready for scripting
+      fetch(`https://${RESOURCE_NAME}/streamingReady`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          textureId: duiUrl.searchParams.get('textureId'),
+          drawableId: duiUrl.searchParams.get('drawableId'),
+        }),
+      })
+    </script>
+  </body>
+</html>

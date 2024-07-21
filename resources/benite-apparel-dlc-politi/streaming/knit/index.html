@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>knit</title>
+
+    <script src="../__shared/data.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        background: url(texture.png) no-repeat;
+      }
+
+      /* Using CSS gradient to mimic cloth texture */
+      #rankTexture {
+        position: absolute;
+        
+        left: 183px;
+        top: 1215px;
+
+        width: 332px;
+        height: 321px;
+
+        background: radial-gradient(#ffffff0b 2px, #00000033);
+        background-size: 9px 9px;
+
+        z-index: 1;
+      }
+
+      #rank {
+        position: absolute;
+
+        --width: 182px;
+        --height: 332px;
+
+        transform-origin: bottom right;
+        rotate: 90deg;
+        translate: calc(var(--width) * -1) calc(-150px);
+
+        left: 183px;
+        top: 1304px;
+
+        width: var(--width);
+        height: var(--height);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="rankTexture"></div>
+    <img id="rank">
+
+    <script defer>
+      // UPDATE SCRIPT
+
+      const setPropertyValue = (property, value) => {
+        switch (property) {
+          case 'rank': { // Rank
+
+            rank.src = `https://cfx-nui-${RESOURCE_NAME}/client/nui/assets/img/ranks/${POLITI_RANK_FILES[value]}.svg`
+
+          break}
+        }
+      }
+
+      // Listen for window messages
+      window.onmessage = ({ data: { property, value } }) => setPropertyValue(property, value)
+    </script>
+
+    <script defer>
+      // LOAD SCRIPT
+
+      const duiUrl = new URL(window.location.href)
+      document.title = duiUrl.searchParams.get('title') || 'UNKNOWN'
+
+      // Texture width/height
+      document.body.style.width = duiUrl.searchParams.get('width') + 'px'
+      document.body.style.height = duiUrl.searchParams.get('height') + 'px'
+
+      // Properties
+      setPropertyValue('rank', parseInt(duiUrl.searchParams.get('rank') || 0)) // Rank
+
+      // Ready for scripting
+      fetch(`https://${RESOURCE_NAME}/streamingReady`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          textureId: duiUrl.searchParams.get('textureId'),
+          drawableId: duiUrl.searchParams.get('drawableId')
+        })
+      })
+    </script>
+  </body>
+</html>

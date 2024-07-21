@@ -1,0 +1,12 @@
+.navbar {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 1rem;
+
+  perspective: 240px;
+  
+  /* background: green; */
+}

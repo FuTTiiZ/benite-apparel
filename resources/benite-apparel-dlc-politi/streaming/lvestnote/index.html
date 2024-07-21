@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>lvestnote</title>
+
+    <script src="../__shared/data.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        background: url(texture.png) no-repeat;
+      }
+
+      #politiBack, #politiFront {
+        position: absolute;
+      }
+
+      #badgeNumber {
+        position: absolute;
+        margin: 0;
+
+        left: 3331px;
+        top: 1220px;
+
+        width: 155px;
+        height: 58px;
+
+        text-align: center;
+        padding-top: .9rem;
+
+        font-family: Arial;
+        font-size: 2.5em;
+
+        color: #d4aa00;
+        text-shadow: -2px 0px 0px #6b5600;
+      }
+
+      #clothTexture {
+        position: absolute;
+
+        left: 3295px;
+        top: 182px;
+
+        width: 595px;
+        height: 175px;
+
+        background: radial-gradient(#ffffff0b 2px, #00000033);
+        background-size: 5px 5px;
+
+        z-index: 1;
+      }
+
+      #badgeNumber::before {
+        content: '';
+  
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        
+        background: radial-gradient(#ffffff0b 1px, #00000033);
+        background-size: 3px 3px;
+        
+        pointer-events: none;
+
+        z-index: 1;
+      }
+
+      #bookColor {
+        position: absolute;
+        left: 1051px;
+        top: 1464px;
+
+        width: 27px;
+        height: 28px;
+      }
+
+      #penColor {
+        position: absolute;
+        left: 1010px;
+        top: 1467px;
+
+        width: 18px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="clothTexture"></div>
+
+    <img id="politiBack" />
+    <img id="politiFront" />
+
+    <p id="badgeNumber"></p>
+
+    <div id="bookColor"></div>
+    <div id="penColor"></div>
+
+    <script defer>
+      // UPDATE SCRIPT
+
+      const setPropertyValue = (property, value) => {
+        switch (property) {
+          case 'politiBack': { // Back patch
+
+            politiBack.src = `../__shared/${POLITI_PATCH_FILES.back[value]}.png`
+
+          break}
+
+          case 'politiFront': { // Front patch
+
+            politiFront.src = `../__shared/${POLITI_PATCH_FILES.front[value]}.png`
+
+          break}
+
+          case 'badgeNumber': { // Police badge number
+
+            badgeNumber.innerText = value.slice(0, 5)
+
+          break}
+
+          case 'bookColor': { // Notebook color
+
+            bookColor.style.backgroundColor = value
+
+          break}
+
+          case 'penColor': { // Pen color
+
+            penColor.style.backgroundColor = value
+
+          break}
+        }
+      }
+
+      // Listen for window messages
+      window.onmessage = ({ data: { property, value } }) => setPropertyValue(property, value)
+    </script>
+    
+    <script defer>
+      // LOAD SCRIPT
+
+      const duiUrl = new URL(window.location.href)
+      document.title = duiUrl.searchParams.get('title') || 'UNKNOWN'
+
+      // Texture width/height
+      document.body.style.width = duiUrl.searchParams.get('width') + 'px'
+      document.body.style.height = duiUrl.searchParams.get('height') + 'px'
+
+      // Properties
+      setPropertyValue('politiBack', parseInt(duiUrl.searchParams.get('politiBack') || 0)) // Back patch
+      setPropertyValue('politiFront', parseInt(duiUrl.searchParams.get('politiFront') || 0)) // Front patch
+      setPropertyValue('badgeNumber', duiUrl.searchParams.get('badgeNumber') || 'A0000') // Police badge number
+      setPropertyValue('bookColor', duiUrl.searchParams.get('bookColor') || '#941010') // Notebook color
+      setPropertyValue('penColor', duiUrl.searchParams.get('penColor') || '#101094') // Pen color
+
+      // Ready for scripting
+      fetch(`https://${RESOURCE_NAME}/streamingReady`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          textureId: duiUrl.searchParams.get('textureId'),
+          drawableId: duiUrl.searchParams.get('drawableId')
+        })
+      })
+    </script>
+
+  </body>
+</html>
