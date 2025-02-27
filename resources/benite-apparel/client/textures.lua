@@ -28,7 +28,14 @@ local propertyTextures<const> = {}
 RegisterNetEvent('benite-apparel:client:loadTextures', function(textures, properties, source)
   for componentId, clothingData in pairs(textures) do
     ---@type DrawableID, integer, integer, integer
-    local drawableId, drawableIdx, textureIdx, slot in clothingData
+    local drawableId, 
+          drawableIdx,
+          textureIdx,
+          slot =
+            clothingData.drawableId,
+            clothingData.drawableIdx,
+            clothingData.textureIdx,
+            clothingData.slot
 
     local filePath<const> = getFilePath(drawableId, drawableIdx, textureIdx)
     local textureId<const> = drawableId ..'_'.. slot
@@ -66,7 +73,11 @@ end)
   ---@param source string
 RegisterNetEvent('benite-apparel:client:unloadTextures', function(textures, source)
   for componentId, clothingData in pairs(textures) do
-    local drawableId, slot in clothingData
+    local drawableId,
+          slot = 
+            clothingData.drawableId,
+            clothingData.slot
+
     local textureId<const> = drawableId ..'_'.. slot
 
     local drawable<const> = GetDrawable(drawableId)

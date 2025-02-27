@@ -79,7 +79,10 @@ AddEventHandler('playerDropped', function()
   local source<const> = source
   
   for componentId, clothingData in pairs(Player(source).state.clothing) do
-    local drawableId, slot in clothingData
+    local drawableId,
+          slot = 
+            clothingData.drawableId,
+            clothingData.slot
     
     -- Free up clothing slot
     ClothingSlots[drawableId][slot] = false

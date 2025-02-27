@@ -3,7 +3,7 @@ game 'gta5'
 
 description 'Benite Apparel'
 author 'FuTTiiZ'
-version '1.1.3'
+version '1.2'
 
 language 'en-US' -- Resource language. Can be any .json locale file found in ./locales/ (you can even add your own language!)
 

@@ -70,7 +70,14 @@ function CheckForClothingUpdates()
     local componentId<const> = tonumber(sComponentId)--[[@as ComponentID]]
 
     ---@type DrawableID, integer, integer, integer
-    local drawableId, slot, drawableIdx, textureIdx in data
+    local drawableId,
+          slot,
+          drawableIdx,
+          textureIdx =
+            data.drawableId,
+            data.slot,
+            data.drawableIdx,
+            data.textureIdx
 
     local currentDrawableIdx<const> = GetPedDrawableVariation(PlayerPed, componentId)
     if currentDrawableIdx ~= drawableIdx then

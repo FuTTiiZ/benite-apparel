@@ -13,3 +13,7 @@ TODO International Release:
 
 1.1.3
 [X] Attempt to fix GetAllDrawables not available
+
+1.2
+[X] Significant performance improvements (🧢)
+[X] Added game build support for Bottom Dollar Bounties and Agents of Sabotage

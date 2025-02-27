@@ -84,7 +84,10 @@ end
   ---@param cb function
 RegisterNUICallback('streamingReady', function(data, cb)
   ---@type string, DrawableID
-  local textureId, drawableId in data
+  local textureId,
+        drawableId =
+          data.textureId,
+          data.drawableId
 
   local dui<const> = duiData[textureId]
 
